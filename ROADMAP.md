@@ -2,6 +2,13 @@
 
 ## 🔥 in Progress
 
+- [ ] Add base game feature
+  - [x] Test tailwind ✅ 2026-02-14
+  - [x] Add dark mode, so I don't get blind ✅ 2026-02-14
+  - [ ] Add game status
+  - [x] Add game board ✅ 2026-02-14
+  - [ ] Add change player feature.
+  - [ ] Verify the square check and don't override the player movements.
 
 ## 🥶 Wait
 
@@ -9,7 +16,6 @@
 
 ## 🎒 Backlog
 
-- [ ] Add base game feature
 - [ ] Add time travel feature
 
 ---
