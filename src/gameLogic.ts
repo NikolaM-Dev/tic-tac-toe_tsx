@@ -1,6 +1,18 @@
-import type { SquareValue } from './types';
+import type { Player, SquareValue } from './types';
 
-export function getGameWinner(squares: SquareValue[]): SquareValue {
+export type GetGameStatusReturn = {
+  isGameOver: boolean;
+  winner: Player | null;
+  winningPosition: [number, number, number] | null;
+};
+
+export function getGameStatus(squares: SquareValue[]): GetGameStatusReturn {
+  const status: GetGameStatusReturn = {
+    isGameOver: false,
+    winner: null,
+    winningPosition: null,
+  };
+
   const winningPositions: number[][] = [
     // Horizontally
     [0, 1, 2],
@@ -20,9 +32,14 @@ export function getGameWinner(squares: SquareValue[]): SquareValue {
   for (const winningPosition of winningPositions) {
     const [a, b, c] = winningPosition;
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
+      status.winner = squares[a];
+      status.winningPosition = winningPosition as [number, number, number];
     }
   }
 
-  return null;
+  if (squares.every((v) => v !== null)) {
+    status.isGameOver = true;
+  }
+
+  return status;
 }

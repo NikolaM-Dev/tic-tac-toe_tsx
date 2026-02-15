@@ -1,5 +1,5 @@
 import type { SquareValue, Player } from '../types';
-import { getGameWinner } from '../gameLogic';
+import { getGameStatus } from '../gameLogic';
 
 type GameStatusProps = {
   currentPlayer: Player;
@@ -10,18 +10,26 @@ export function GameStatus({
   currentPlayer,
   squares,
 }: GameStatusProps): React.JSX.Element {
-  const winner = getGameWinner(squares);
-  if (!winner) {
+  const status = getGameStatus(squares);
+  if (!status.winner && !status.isGameOver) {
     return (
       <GameStatusText>
-        <Enfasis>{currentPlayer}</Enfasis>'s Turn
+        <Enfasis>{currentPlayer}</Enfasis>'s Turn 🎰
+      </GameStatusText>
+    );
+  }
+
+  if (status.isGameOver) {
+    return (
+      <GameStatusText>
+        <Enfasis>Draw!</Enfasis> Nobody wins this round. 🤝
       </GameStatusText>
     );
   }
 
   return (
     <GameStatusText>
-      The Player <Enfasis>{winner}</Enfasis> Wins!!! 🏆
+      The Player <Enfasis>{status.winner}</Enfasis> Wins!!! 🏆
     </GameStatusText>
   );
 }
