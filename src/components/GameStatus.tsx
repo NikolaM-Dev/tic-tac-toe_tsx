@@ -14,15 +14,14 @@ export function GameStatus({
   if (!winner) {
     return (
       <GameStatusText>
-        <strong className="text-orange-600">{currentPlayer}</strong>'s Turn
+        <Enfasis>{currentPlayer}</Enfasis>'s Turn
       </GameStatusText>
     );
   }
 
   return (
     <GameStatusText>
-      The Player <strong className="text-orange-600">{winner}</strong> Wins!!!
-      🏆
+      The Player <Enfasis>{winner}</Enfasis> Wins!!! 🏆
     </GameStatusText>
   );
 }
@@ -33,4 +32,12 @@ function GameStatusText({
   children: React.ReactNode;
 }): React.JSX.Element {
   return <h2 className="text-4xl">{children}</h2>;
+}
+
+function Enfasis({
+  children,
+}: {
+  children: React.ReactNode;
+}): React.JSX.Element {
+  return <strong className="text-red-500">{children}</strong>;
 }
