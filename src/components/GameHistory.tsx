@@ -1,6 +1,7 @@
 import type React from 'react';
 import type { SquareValue } from '../types';
 import { Button } from './Button';
+import { useState } from 'react';
 
 type GameHistoryProps = {
   history: SquareValue[][];
@@ -9,37 +10,45 @@ type GameHistoryProps = {
   onJump: (movement: number) => void;
 };
 
+const movementsKeys = Array.from({ length: 9 }, () => crypto.randomUUID());
+
 export function GameHistory({
   currentMovement,
   history,
   onJump,
 }: GameHistoryProps): React.JSX.Element {
+  const [isAscending, setIsAscending] = useState(true);
+  function handleSorting() {
+    setIsAscending(!isAscending);
+  }
+
   const movements = history.map((_h, i) => {
+    const orderedIndex = isAscending ? i : history.length - 1 - i;
     let children: React.ReactNode;
 
     // You are at the start
-    if (i === 0 && currentMovement === 0) {
+    if (orderedIndex === 0 && currentMovement === 0) {
       children = (
-        <MovementButton disabled onClick={() => onJump(i)}>
+        <MovementButton disabled onClick={() => onJump(orderedIndex)}>
           You Are at the Game Start
         </MovementButton>
       );
     }
 
     // Reset the game
-    else if (i === 0) {
+    else if (orderedIndex === 0) {
       children = (
-        <MovementButton onClick={() => onJump(i)}>
+        <MovementButton onClick={() => onJump(orderedIndex)}>
           Go to Game Start
         </MovementButton>
       );
     }
 
     // Current Movement
-    else if (currentMovement === i) {
+    else if (currentMovement === orderedIndex) {
       children = (
-        <MovementButton disabled onClick={() => onJump(i)}>
-          You Are at Move #{i}
+        <MovementButton disabled onClick={() => onJump(orderedIndex)}>
+          You Are at Move #{orderedIndex}
         </MovementButton>
       );
     }
@@ -47,18 +56,27 @@ export function GameHistory({
     // Default
     else {
       children = (
-        <MovementButton onClick={() => onJump(i)}>
-          Go to Move #{i}
+        <MovementButton onClick={() => onJump(orderedIndex)}>
+          Go to Move #{orderedIndex}
         </MovementButton>
       );
     }
 
-    return <MovementListItem key={i}>{children}</MovementListItem>;
+    return (
+      <MovementListItem key={movementsKeys[orderedIndex]}>
+        {children}
+      </MovementListItem>
+    );
   });
 
   return (
     <section>
-      <h2 className="mb-4 text-3xl font-bold">History</h2>
+      <Button
+        onClick={handleSorting}
+        className="mb-2 min-w-50 cursor-pointer bg-transparent text-3xl font-bold hover:bg-neutral-800/30"
+      >
+        History {isAscending ? '⬇️' : '⬆️'}
+      </Button>
       <ol className="flex flex-col gap-2">{movements}</ol>
     </section>
   );
