@@ -1,7 +1,7 @@
 import type { Player, SquareValue } from '../types';
 import { GameRow } from './GameRow';
 import { GameSquare } from './GameSquare';
-import { getGameWinner } from '../gameLogic';
+import { getGameStatus } from '../gameLogic';
 
 type GameBoardProps = {
   currentPlayer: Player;
@@ -17,7 +17,7 @@ export function GameBoard({
 }: GameBoardProps): React.JSX.Element {
   function handleSquareClick(i: number) {
     // Don't override movements or don't keep playing after the game is over
-    if (squares[i] || getGameWinner(squares)) {
+    if (squares[i] || getGameStatus(squares).isGameOver) {
       return;
     }
 
