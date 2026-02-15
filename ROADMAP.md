@@ -2,13 +2,7 @@
 
 ## 🔥 in Progress
 
-- [ ] Add base game feature
-  - [x] Test tailwind ✅ 2026-02-14
-  - [x] Add dark mode, so I don't get blind ✅ 2026-02-14
-  - [ ] Add game status
-  - [x] Add game board ✅ 2026-02-14
-  - [ ] Add change player feature.
-  - [ ] Verify the square check and don't override the player movements.
+- [ ] For the current move only, show “You are at move #…” instead of a button.
 
 ## 🥶 Wait
 
@@ -16,12 +10,24 @@
 
 ## 🎒 Backlog
 
-- [ ] Add time travel feature
+- [ ] Rewrite Board to use two loops to make the squares instead of hardcoding them.
+- [ ] Add a toggle button that lets you sort the moves in either ascending or descending order.
+- [ ] When someone wins, highlight the three squares that caused the win (and when no one wins, display a message about the result being a draw).
+- [ ] Display the location for each move in the format (row, col) in the move history list.
 
 ---
 
 ## Archive
 
+- [x] Add time travel feature ✅ 2026-02-15
+  - [x] Render history ✅ 2026-02-15
+- [x] Add base game feature ✅ 2026-02-15
+  - [x] Test tailwind ✅ 2026-02-14
+  - [x] Add dark mode, so I don't get blind ✅ 2026-02-14
+  - [x] Add game status ✅ 2026-02-15
+  - [x] Add game board ✅ 2026-02-14
+  - [x] Add change player feature. ✅ 2026-02-14
+  - [x] Verify the square check and don't override the player movements. ✅ 2026-02-14
 - [x] Clean the repository ✅ 2026-02-14
   - [x] Remove unnecessary files. ✅ 2026-02-14
   - [x] Review title, names, conventions, etc. ✅ 2026-02-14
