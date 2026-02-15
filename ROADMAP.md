@@ -2,7 +2,6 @@
 
 ## 🔥 in Progress
 
-- [ ] Add a toggle button that lets you sort the moves in either ascending or descending order.
 
 ## 🥶 Wait
 
@@ -17,6 +16,7 @@
 
 ## Archive
 
+- [x] Add a toggle button that lets you sort the moves in either ascending or descending order. ✅ 2026-02-15
 - [x] Rewrite Board to use two loops to make the squares instead of hardcoding them. ✅ 2026-02-15
 - [x] For the current move only, show “You are at move #…” instead of a button. ✅ 2026-02-15
 - [x] Add time travel feature ✅ 2026-02-15
