@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import type { Player, SquareValue } from './types';
+import type { Coordinate, Player, SquareValue } from './types';
 import { GameBoard } from './components/GameBoard';
 import { GameHistory } from './components/GameHistory';
 import { GameStatus } from './components/GameStatus';
@@ -11,19 +11,31 @@ export function App() {
   const [history, setHistory] = useState<SquareValue[][]>([
     Array(9).fill(null),
   ]);
+  const [movementsCoordinates, setMovementsCoordinates] = useState<
+    Coordinate[]
+  >([]);
 
   const movementCount = squares.filter((s) => s !== null).length;
   const currentPlayer: Player = movementCount % 2 === 0 ? 'X' : 'O';
   const gameStatus = getGameStatus(squares);
 
-  function handlePlay(newSquares: SquareValue[]): void {
+  function handlePlay(newSquares: SquareValue[], coordinate: Coordinate): void {
     setSquares(newSquares);
+
     setHistory((prevHistory) => {
       if (prevHistory.length - 1 > movementCount) {
         return [...prevHistory.slice(0, movementCount + 1), newSquares];
       }
 
       return [...prevHistory, newSquares];
+    });
+
+    setMovementsCoordinates((prevCoordinates) => {
+      if (prevCoordinates.length - 1 > movementCount) {
+        return [...prevCoordinates.slice(0, movementCount + 1), coordinate];
+      }
+
+      return [...prevCoordinates, coordinate];
     });
   }
 
@@ -44,6 +56,7 @@ export function App() {
           gameStatus={gameStatus}
         />
         <GameHistory
+          movementsCoordinates={movementsCoordinates}
           currentMovement={movementCount}
           history={history}
           onJump={handleJump}

@@ -1,11 +1,12 @@
 import type React from 'react';
-import type { SquareValue } from '../types';
+import type { Coordinate, SquareValue } from '../types';
 import { Button } from './Button';
 import { useState } from 'react';
 
 type GameHistoryProps = {
-  history: SquareValue[][];
   currentMovement: number;
+  history: SquareValue[][];
+  movementsCoordinates: Coordinate[];
 
   onJump: (movement: number) => void;
 };
@@ -15,6 +16,7 @@ const movementsKeys = Array.from({ length: 10 }, () => crypto.randomUUID());
 export function GameHistory({
   currentMovement,
   history,
+  movementsCoordinates,
   onJump,
 }: GameHistoryProps): React.JSX.Element {
   const [isAscending, setIsAscending] = useState(true);
@@ -25,6 +27,11 @@ export function GameHistory({
   const movements = history.map((_h, i) => {
     const orderedIndex = isAscending ? i : history.length - 1 - i;
     let children: React.ReactNode;
+    let coordinate: React.ReactNode;
+    if (orderedIndex - 1 >= 0) {
+      const { row, col } = movementsCoordinates[orderedIndex - 1];
+      coordinate = <Coordinates col={col + 1} row={row + 1} />;
+    }
 
     // You are at the start
     if (orderedIndex === 0 && currentMovement === 0) {
@@ -48,7 +55,7 @@ export function GameHistory({
     else if (currentMovement === orderedIndex) {
       children = (
         <MovementButton disabled onClick={() => onJump(orderedIndex)}>
-          You Are at Move #{orderedIndex}
+          You Are at Move #{orderedIndex} {coordinate}
         </MovementButton>
       );
     }
@@ -57,7 +64,7 @@ export function GameHistory({
     else {
       children = (
         <MovementButton onClick={() => onJump(orderedIndex)}>
-          Go to Move #{orderedIndex}
+          Go to Move #{orderedIndex} {coordinate}
         </MovementButton>
       );
     }
@@ -107,5 +114,19 @@ export function MovementButton({
     <Button className="w-full" onClick={onClick} {...props}>
       {children}
     </Button>
+  );
+}
+
+type CoordinatesProps = {
+  col: number;
+  row: number;
+};
+
+function Coordinates({ col, row }: CoordinatesProps): React.JSX.Element {
+  return (
+    <strong>
+      (<span className="text-orange-400">{row}</span>,{' '}
+      <span className="text-blue-400">{col}</span>)
+    </strong>
   );
 }

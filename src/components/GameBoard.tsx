@@ -1,4 +1,4 @@
-import type { Player, SquareValue } from '../types';
+import type { Coordinate, Player, SquareValue } from '../types';
 import { GameRow } from './GameRow';
 import { GameSquare } from './GameSquare';
 import { type GetGameStatusReturn } from '../gameLogic';
@@ -8,7 +8,7 @@ type GameBoardProps = {
   squares: SquareValue[];
   gameStatus: GetGameStatusReturn;
 
-  onPlay: (squares: SquareValue[]) => void;
+  onPlay: (squares: SquareValue[], coordinate: Coordinate) => void;
 };
 
 export function GameBoard({
@@ -17,7 +17,15 @@ export function GameBoard({
   onPlay,
   squares,
 }: GameBoardProps): React.JSX.Element {
-  function handleSquareClick(i: number) {
+  function handleSquareClick({
+    i,
+    row,
+    col,
+  }: {
+    i: number;
+    row: number;
+    col: number;
+  }) {
     // Don't override movements or don't keep playing after the game is over
     if (squares[i] || gameStatus.isGameOver) {
       return;
@@ -25,7 +33,7 @@ export function GameBoard({
 
     const newSquares = squares.slice();
     newSquares[i] = currentPlayer;
-    onPlay(newSquares);
+    onPlay(newSquares, { row, col });
   }
 
   const arrRange = [...Array(3).keys()];
@@ -47,7 +55,7 @@ export function GameBoard({
                 isWinningSquare={isWinningSquare}
                 key={id}
                 value={squares[id]}
-                onSquareClick={() => handleSquareClick(id)}
+                onSquareClick={() => handleSquareClick({ i: id, row, col })}
               />
             );
           })}
