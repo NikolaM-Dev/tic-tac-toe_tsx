@@ -4,6 +4,7 @@ import type { Player, SquareValue } from './types';
 import { GameBoard } from './components/GameBoard';
 import { GameHistory } from './components/GameHistory';
 import { GameStatus } from './components/GameStatus';
+import { getGameStatus } from './gameLogic';
 
 export function App() {
   const [squares, setSquares] = useState<SquareValue[]>(Array(9).fill(null));
@@ -13,6 +14,7 @@ export function App() {
 
   const movementCount = squares.filter((s) => s !== null).length;
   const currentPlayer: Player = movementCount % 2 === 0 ? 'X' : 'O';
+  const gameStatus = getGameStatus(squares);
 
   function handlePlay(newSquares: SquareValue[]): void {
     setSquares(newSquares);
@@ -32,7 +34,7 @@ export function App() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center gap-8 bg-neutral-900 p-24 text-neutral-200">
       <h1 className="text-8xl font-bold">Tic Tac Toe</h1>
-      <GameStatus currentPlayer={currentPlayer} squares={squares} />
+      <GameStatus currentPlayer={currentPlayer} gameStatus={gameStatus} />
 
       <main className="flex gap-20">
         <GameBoard

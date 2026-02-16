@@ -3,14 +3,14 @@ import type { Player, SquareValue } from './types';
 export type GetGameStatusReturn = {
   isGameOver: boolean;
   winner: Player | null;
-  winningPosition: [number, number, number] | null;
+  winningStreak: [number, number, number] | null;
 };
 
 export function getGameStatus(squares: SquareValue[]): GetGameStatusReturn {
   const status: GetGameStatusReturn = {
     isGameOver: false,
     winner: null,
-    winningPosition: null,
+    winningStreak: null,
   };
 
   const winningPositions: number[][] = [
@@ -33,11 +33,11 @@ export function getGameStatus(squares: SquareValue[]): GetGameStatusReturn {
     const [a, b, c] = winningPosition;
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
       status.winner = squares[a];
-      status.winningPosition = winningPosition as [number, number, number];
+      status.winningStreak = winningPosition as [number, number, number];
     }
   }
 
-  if (squares.every((v) => v !== null)) {
+  if (status.winner || squares.every((v) => v !== null)) {
     status.isGameOver = true;
   }
 
