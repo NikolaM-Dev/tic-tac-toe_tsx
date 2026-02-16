@@ -10,7 +10,7 @@ type GameHistoryProps = {
   onJump: (movement: number) => void;
 };
 
-const movementsKeys = Array.from({ length: 9 }, () => crypto.randomUUID());
+const movementsKeys = Array.from({ length: 10 }, () => crypto.randomUUID());
 
 export function GameHistory({
   currentMovement,
