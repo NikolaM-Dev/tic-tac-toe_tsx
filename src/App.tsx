@@ -39,13 +39,14 @@ export function App() {
       <main className="flex gap-20">
         <GameBoard
           currentPlayer={currentPlayer}
-          squares={squares}
           onPlay={handlePlay}
+          squares={squares}
+          gameStatus={gameStatus}
         />
         <GameHistory
           currentMovement={movementCount}
-          onJump={handleJump}
           history={history}
+          onJump={handleJump}
         />
       </main>
     </div>
