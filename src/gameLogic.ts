@@ -34,6 +34,8 @@ export function getGameStatus(squares: SquareValue[]): GetGameStatusReturn {
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
       status.winner = squares[a];
       status.winningStreak = winningPosition as [number, number, number];
+
+      break;
     }
   }
 
