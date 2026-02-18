@@ -11,21 +11,19 @@ type GameBoardProps = {
   onPlay: (squares: SquareValue[], coordinate: Coordinate) => void;
 };
 
+type HandleSquareClickProps = {
+  col: number;
+  i: number;
+  row: number;
+};
+
 export function GameBoard({
   currentPlayer,
   gameStatus,
   onPlay,
   squares,
 }: GameBoardProps): React.JSX.Element {
-  function handleSquareClick({
-    i,
-    row,
-    col,
-  }: {
-    i: number;
-    row: number;
-    col: number;
-  }) {
+  function handleSquareClick({ i, row, col }: HandleSquareClickProps) {
     // Don't override movements or don't keep playing after the game is over
     if (squares[i] || gameStatus.isGameOver) {
       return;
