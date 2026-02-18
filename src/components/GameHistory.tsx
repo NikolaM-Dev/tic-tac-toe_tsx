@@ -11,8 +11,6 @@ type GameHistoryProps = {
   onJump: (movement: number) => void;
 };
 
-const movementsKeys = Array.from({ length: 10 }, () => crypto.randomUUID());
-
 export function GameHistory({
   currentMovement,
   history,
@@ -69,11 +67,7 @@ export function GameHistory({
       );
     }
 
-    return (
-      <MovementListItem key={movementsKeys[orderedIndex]}>
-        {children}
-      </MovementListItem>
-    );
+    return <MovementListItem key={orderedIndex}>{children}</MovementListItem>;
   });
 
   return (
