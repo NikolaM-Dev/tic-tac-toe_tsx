@@ -12,6 +12,8 @@
 
 ## Archive
 
+- [x] Add deploy in GitHub Pages ✅ 2026-02-18
+- [x] Add extra information into the package.json ✅ 2026-02-18
 - [x] Fix the game status bug when someone wins, it's currently showing the draw message ✅ 2026-02-18
 - [x] Display the location for each move in the format (row, col) in the move history list. ✅ 2026-02-16
 - [x] When someone wins, highlight the three squares that caused the win (and when no one wins, display a message about the result being a draw). ✅ 2026-02-16
