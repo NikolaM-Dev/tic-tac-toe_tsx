@@ -1,4 +1,5 @@
 import type { Player } from '../types';
+import { Match, Switch } from './Switch';
 import { type GetGameStatusReturn } from '../gameLogic';
 
 type GameStatusProps = {
@@ -10,25 +11,22 @@ export function GameStatus({
   currentPlayer,
   gameStatus,
 }: GameStatusProps): React.JSX.Element {
-  if (!gameStatus.winner && !gameStatus.isGameOver) {
-    return (
-      <GameStatusText>
-        <Enfasis>{currentPlayer}</Enfasis>'s Turn 🎰
-      </GameStatusText>
-    );
-  }
-
-  if (gameStatus.isGameOver) {
-    return (
-      <GameStatusText>
-        <Enfasis>Draw!</Enfasis> Nobody wins this round. 🤝
-      </GameStatusText>
-    );
-  }
-
   return (
     <GameStatusText>
-      The Player <Enfasis>{gameStatus.winner}</Enfasis> Wins!!! 🏆
+      <Switch
+        fallback={
+          <>
+            <Enfasis>{currentPlayer}</Enfasis>'s Turn 🎰
+          </>
+        }
+      >
+        <Match when={gameStatus.winner != null}>
+          The Player <Enfasis>{gameStatus.winner}</Enfasis> Wins!!! 🏆
+        </Match>
+        <Match when={gameStatus.isGameOver}>
+          <Enfasis>Draw!</Enfasis> Nobody wins this round. 🤝
+        </Match>
+      </Switch>
     </GameStatusText>
   );
 }
