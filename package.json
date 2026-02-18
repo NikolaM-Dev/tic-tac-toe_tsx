@@ -1,9 +1,13 @@
 {
   "name": "tic-tac-toe_tsx",
+  "description": "A classic Tic‑Tac‑Toe game built with React and TypeScript, featuring move history, board coordinates, win highlighting, and time‑travel capabilities.",
+  "author": "Juan David Merchan Torres (NikolaM-Dev)",
+  "license": "MIT",
+  "main": "src/main.tsx",
+  "version": "1.0.0",
   "packageManager": "bun@1.3.9",
   "private": true,
   "type": "module",
-  "version": "0.0.0",
   "scripts": {
     "build": "tsc -b && vite build",
     "dev": "vite",
@@ -33,5 +37,25 @@
     "typescript": "~5.9.3",
     "typescript-eslint": "8.48.0",
     "vite": "7.3.1"
+  },
+  "bugs": {
+    "url": "https://github.com/NikolaM-Dev/tic-tac-toe_tsx/issues"
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "homepage": "https://github.com/NikolaM-Dev/tic-tac-toe_tsx#readme",
+  "keywords": [
+    "building-in-public",
+    "bun",
+    "learning-in-public",
+    "react",
+    "tailwindcss",
+    "typescript",
+    "vite"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NikolaM-Dev/tic-tac-toe_tsx.git"
   }
 }
