@@ -2,6 +2,12 @@
 
 ## 🔥 in Progress
 
+- [ ] AI Code Review
+  - [x] Winniner early loop break ✅ 2026-02-18
+  - [x] Typos ✅ 2026-02-18
+  - [x] Unnecessary fragments ✅ 2026-02-18
+- [x] Improve my key mental model ✅ 2026-02-18
+
 ## 🥶 Wait
 
 ## 🔮 Next
