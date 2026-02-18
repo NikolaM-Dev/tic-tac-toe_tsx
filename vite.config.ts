@@ -4,6 +4,6 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: 'https://github.com/NikolaM-Dev/tic-tac-toe_tsx',
+  base: '/tic-tac-toe_tsx/',
   plugins: [react(), tailwindcss()],
 });
