@@ -16,15 +16,15 @@ export function GameStatus({
       <Switch
         fallback={
           <>
-            <Enfasis>{currentPlayer}</Enfasis>'s Turn 🎰
+            <Emphasis>{currentPlayer}</Emphasis>'s Turn 🎰
           </>
         }
       >
         <Match when={gameStatus.winner != null}>
-          The Player <Enfasis>{gameStatus.winner}</Enfasis> Wins!!! 🏆
+          The Player <Emphasis>{gameStatus.winner}</Emphasis> Wins!!! 🏆
         </Match>
         <Match when={gameStatus.isGameOver}>
-          <Enfasis>Draw!</Enfasis> Nobody wins this round. 🤝
+          <Emphasis>Draw!</Emphasis> Nobody wins this round. 🤝
         </Match>
       </Switch>
     </GameStatusText>
@@ -39,7 +39,7 @@ function GameStatusText({
   return <h2 className="text-4xl">{children}</h2>;
 }
 
-function Enfasis({
+function Emphasis({
   children,
 }: {
   children: React.ReactNode;
