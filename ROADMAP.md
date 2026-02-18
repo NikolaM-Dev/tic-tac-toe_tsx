@@ -2,13 +2,6 @@
 
 ## 🔥 in Progress
 
-- [ ] AI Code Review
-  - [x] Winniner early loop break ✅ 2026-02-18
-  - [x] Typos ✅ 2026-02-18
-  - [x] Unnecessary fragments ✅ 2026-02-18
-  - [x] DRY ✅ 2026-02-18
-- [x] Improve my key mental model ✅ 2026-02-18
-
 ## 🥶 Wait
 
 ## 🔮 Next
@@ -19,6 +12,12 @@
 
 ## Archive
 
+- [x] AI Code Review ✅ 2026-02-18
+  - [x] Winniner early loop break ✅ 2026-02-18
+  - [x] Typos ✅ 2026-02-18
+  - [x] Unnecessary fragments ✅ 2026-02-18
+  - [x] DRY ✅ 2026-02-18
+- [x] Improve my key mental model ✅ 2026-02-18
 - [x] Add deploy in GitHub Pages ✅ 2026-02-18
 - [x] Add extra information into the package.json ✅ 2026-02-18
 - [x] Fix the game status bug when someone wins, it's currently showing the draw message ✅ 2026-02-18
