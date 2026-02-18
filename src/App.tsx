@@ -19,24 +19,21 @@ export function App() {
   const currentPlayer: Player = movementCount % 2 === 0 ? 'X' : 'O';
   const gameStatus = getGameStatus(squares);
 
+  function trimHistory<T>(prev: T[], newItem: T): T[] {
+    if (prev.length - 1 > movementCount) {
+      return [...prev.slice(0, movementCount + 1), newItem];
+    }
+
+    return [...prev, newItem];
+  }
+
   function handlePlay(newSquares: SquareValue[], coordinate: Coordinate): void {
     setSquares(newSquares);
 
-    setHistory((prevHistory) => {
-      if (prevHistory.length - 1 > movementCount) {
-        return [...prevHistory.slice(0, movementCount + 1), newSquares];
-      }
-
-      return [...prevHistory, newSquares];
-    });
-
-    setMovementsCoordinates((prevCoordinates) => {
-      if (prevCoordinates.length - 1 > movementCount) {
-        return [...prevCoordinates.slice(0, movementCount + 1), coordinate];
-      }
-
-      return [...prevCoordinates, coordinate];
-    });
+    setHistory((prevHistory) => trimHistory(prevHistory, newSquares));
+    setMovementsCoordinates((prevCoordinates) =>
+      trimHistory(prevCoordinates, coordinate),
+    );
   }
 
   function handleJump(movement: number): void {
